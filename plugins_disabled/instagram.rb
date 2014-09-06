@@ -89,10 +89,11 @@ class InstagramLogger < Slogger
       config.client_secret = '9cd3c532cd6a495890b2d2850647c8d1'
     end
 
-
     client = Instagram.client(:access_token => @instagram_config['access_token'])
     user = client.user
     instagram_media = client.user_recent_media
+
+    @log.info("Getting Instagram posts for #{user.username}")
     begin
       instagram_media.each do |media|
         time_created = media['created_time'].to_i
