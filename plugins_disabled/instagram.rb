@@ -80,7 +80,7 @@ class InstagramLogger < Slogger
     end
 
     @instagram_config['instagram_tags'] ||= '#social #instagram'
-    tags = "\n\n#{@instagram_config['instagram_tags']}\n" unless @instagram_config['instagram_tags'] == ''
+    tags = "\n\n(#{@instagram_config['instagram_tags']})\n" unless @instagram_config['instagram_tags'] == ''
 
     today = @timespan
 
@@ -104,7 +104,8 @@ class InstagramLogger < Slogger
         location_data = media['location'] unless media['location'] == nil
         likes_data = client.media_likes(media['id']) unless media['likes']['count'] == 0
         caption = media['caption']['text'] unless media['caption'] == nil
-        
+        if caption[0] == '#' then caption = ' ' + caption end
+
         comments = ""
         if media['comments']['count'] != 0
           comments += "### Comments\n\n"
