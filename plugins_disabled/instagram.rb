@@ -80,7 +80,7 @@ class InstagramLogger < Slogger
     end
 
     @instagram_config['instagram_tags'] ||= '#social #instagram'
-    tags = "\n\n#{@instagram_config['instagram_tags']}\n" unless @instagram_config['instagram_tags'] == ''
+    tags = "\n\n(#{@instagram_config['instagram_tags']})\n" unless @instagram_config['instagram_tags'] == ''
 
     today = @timespan
 
